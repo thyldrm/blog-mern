@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import "./topbar.css"
 
 export default function TopBar() {
+    const user = false;
     return (
         <div className="top">
             <div className="topLeft">
@@ -12,20 +14,48 @@ export default function TopBar() {
             </div>
             <div className="topCenter">
                 <ul className="topList">
-                    <li className="topListItem">Home</li>
+                <Link className="link" to="/">
+                    HOME
+                </Link>
                     <li className="topListItem">About</li>
                     <li className="topListItem">Contact</li>
-                    <li className="topListItem">Write</li>
-                    <li className="topListItem">Logout</li>
+                    <li className="topListItem">
+                        <Link className="link" to="/write">
+                            WRITE
+                        </Link>
+                    </li>
+                    {user && <li className="topListItem">LOGOUT</li>}
                 </ul>
             </div>
             <div className="topRight">
-                <img
+        {user ? (
+          <Link className="link" to="/settings">
+            <img
                 className="topImg"
                 src="https://avatars.githubusercontent.com/u/59919927?v=4" alt=""
                 />
-                <i className="topSearchIcon fas fa-search"></i>
-            </div>
-        </div>
-    )
+          </Link>
+        ) : (
+          <ul className="topList">
+            <li className="topListItem">
+              <Link className="link" to="/login">
+                LOGIN
+              </Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/register">
+                REGISTER
+              </Link>
+            </li>
+          </ul>
+        )}
+        <i className="topSearchIcon fas fa-search"></i>
+      </div>
+    </div>
+  );
 }
+
+
+
+
+
