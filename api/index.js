@@ -1,10 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const authRoute = require("./routes/auth")
+
 const app = express();
 
-app.use("/",(req,res)=>{
-    console.log("server create")
-})
+//--MIDDLEWARES
+app.use(express.json());
+
 
 //--DB CONNECT
 mongoose.connect("mongodb://localhost/blogMern", {
@@ -15,6 +17,12 @@ mongoose.connect("mongodb://localhost/blogMern", {
 })
 .then(console.log("Connected"))
 .catch((err) => console.log(err));
+
+
+//--ROUTES
+app.use("/api/auth", authRoute);
+
+
 
 app.listen("8080", ()=> {
     console.log("Backend is running.")
