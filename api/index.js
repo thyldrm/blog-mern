@@ -5,11 +5,13 @@ const userRoute = require("./routes/users")
 const postRoute = require("./routes/posts")
 const categoryRoute = require("./routes/categories");
 const multer = require("multer");
+const cors = require('cors')
 
 const app = express();
 
 //--MIDDLEWARES
 app.use(express.json());
+app.use(cors())
 
 
 //--DB CONNECT
