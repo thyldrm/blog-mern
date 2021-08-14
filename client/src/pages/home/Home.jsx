@@ -9,15 +9,15 @@ import { useLocation } from 'react-router-dom'
 
 export default function Home() {
     const [posts, setPosts] = useState([]);
-    
+    const {search} = useLocation();
   
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await axios.get("http://localhost:8080/api/posts");
+        const res = await axios.get("http://localhost:8080/api/posts"+search);
         setPosts(res.data);
       };
       fetchPosts();
-    }, []);
+    }, [search]);
     return (
         <>
         <Header/>
